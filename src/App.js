@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Sentry from '@sentry/browser';
 import logo from './logo.svg';
 import './App.css';
 
@@ -15,7 +16,7 @@ function App() {
     try {
       throw new Error('Caught');
     } catch (err) {
-      console.error(error);
+      console.error(err);
       Sentry.captureException(err);
     }
   };
@@ -24,6 +25,7 @@ function App() {
     <div className='App'>
       <header className='App-header'>
         <img src={logo} className='App-logo' alt='logo' />
+
         <button onClick={handleClick}>Error</button>
 
         <p>
